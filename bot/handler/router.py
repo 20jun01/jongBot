@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Response
+from .cmd import verification_handler, event_handler
 
 def setup_router() -> APIRouter:
     router = APIRouter(tags=["bot"])
@@ -7,7 +8,9 @@ def setup_router() -> APIRouter:
         return {"status": "ok"}
 
     @router.post("/")
-    async def bot(request: Request):
-        return {"status": "ok"}
+    async def bot(request: Request) -> Response:
+        headers = request.headers
+        event = verification_handler(headers)
+        return event_handler(event, request)
 
     return router
