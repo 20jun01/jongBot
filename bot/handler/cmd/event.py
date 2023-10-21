@@ -64,7 +64,8 @@ def quiz_handler():
     agarihais = ""
     for i in range(1, 10):
         if chinitsu_agari_check(quiz_tehai + str(i)):
-            agarihais = str(i)
+            agarihais += str(i)
+    print(agarihais)
     return message
 
 def answer_handler(message_sent: str) -> bool:
