@@ -16,7 +16,7 @@ def convert_to_message(number: int, tile_type: TileType):
         return PREFIX + ji_list[number - 1]
     return PREFIX + str(number) + tile_type.value
 
-def convert_chinitsu_str_to_message(tiles: str, tile_type: TileType):
+def convert_chinitsu_str_to_message(tiles: str, tile_type: TileType = TileType.Pin):
     message = ""
     for tile in tiles:
         message += convert_to_message(int(tile), tile_type)
