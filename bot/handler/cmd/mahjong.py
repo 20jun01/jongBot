@@ -15,7 +15,6 @@ def chinitsu_agari_check(tiles: str) -> bool:
 
     return: bool (True if agari)
     """
-
     ag = agari.Agari()
-    tiles_34 = TilesConverter.one_line_string_to_34_array(tiles)
+    tiles_34 = TilesConverter.one_line_string_to_34_array(tiles + "p")
     return ag.is_agari(tiles_34)
