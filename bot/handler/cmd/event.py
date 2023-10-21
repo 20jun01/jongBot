@@ -63,6 +63,8 @@ def quiz_handler():
 
     agarihais = ""
     for i in range(1, 10):
+        if tehai.count(str(i)) == 4:
+            continue
         if chinitsu_agari_check(quiz_tehai + str(i)):
             agarihais += str(i)
     print(agarihais)

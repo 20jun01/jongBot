@@ -1,10 +1,25 @@
 import random
 from mahjong import agari
 from mahjong.tile import TilesConverter
+from collections import Counter
+
+def choices_with_limit(pool, k, limit):
+    selected = []
+    counts = Counter()
+
+    for _ in range(k):
+        available_choices = [item for item in pool if counts[item] < limit]
+        if not available_choices:
+            break
+        choice = random.choice(available_choices)
+        selected.append(choice)
+        counts[choice] += 1
+
+    return selected
 
 def chinitsu_tehai_generator() -> str:
     tiles = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    tiles_tmp = random.choices(tiles, k=13)
+    tiles_tmp = choices_with_limit(tiles, 13, 4)
     tiles_tmp.sort()
     tiles_str = "".join(tiles_tmp)
     return tiles_str
