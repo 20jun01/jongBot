@@ -18,8 +18,9 @@ def event_handler(event: EventType, body: dict) -> Response:
 def message_created_handler(body: dict):
     message_sent: str = body["message"]["plainText"]
     channel_id: str = body["message"]["channelId"]
-    print(body)
+    post_user: str = body["message"]["user"]["name"]
     if message_sent.startswith("@BOT_mahjong"):
+        message_sent = message_sent.replace("@BOT_mahjong", "").strip()
         if message_sent.startswith("/leave"):
             api.leave_channel(channel_id)
         if message_sent.startswith("/join"):
