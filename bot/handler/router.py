@@ -11,6 +11,6 @@ def setup_router() -> APIRouter:
     async def bot(request: Request) -> Response:
         headers = request.headers
         event = verification_handler(headers)
-        return event_handler(event, request)
+        return event_handler(event, await request.json())
 
     return router
