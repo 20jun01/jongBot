@@ -16,6 +16,7 @@ def event_handler(event: EventType, body: dict) -> Response:
         return Response(status_code=204)
 
 def message_created_handler(body: dict):
+    global quiz_posted, quiz_tehai, agarihais
     message_sent: str = body["message"]["plainText"]
     channel_id: str = body["message"]["channelId"]
     post_user: str = body["message"]["user"]["name"]
